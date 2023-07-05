@@ -1,0 +1,8 @@
+# Crear un archivo .env en la raiz del proyecto y poner las variables de URL y PORT
+URL = <url de la conexión a la bd de mongo atlas>
+PORT = el puerto en el que correrá la APP
+Ejemplo:
+URL = mongodb+srv://<USER>:<PASSWORD>@cluster0.tcajfow.mongodb.net/?retryWrites=true&w=majority
+PORT = 3000
+
+# Correr npm install
