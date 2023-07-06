@@ -4,7 +4,7 @@ const express = require('express');
 const app = express();
 //importar dotenv para las variables de entorno
 require('dotenv').config();
-//puerto
+//puerto desde las variables de entorno
 const port = process.env.PORT || 8080;
 //importar la funcion getConnection de la carpeta db:
 const {getConnection} = require('./database/connection');
@@ -16,13 +16,9 @@ const cors = require('cors');
 app.use(express.json());
 app.use(cors());
 // ------- rutas --------
-// app.get('/', (req, res) => {
-//   res.send('Hello World!')
-// });
 app.use('/user', require('./routes/User'));
-// app.use('/<auth>', require('./router/<auth>'));
-//----------------------------------------------------------
-//levantar la aplicación
+
+//-----levantar la aplicación------------
 app.listen(port, () => {
     console.log(`app listening on port ${port}`)
 });
