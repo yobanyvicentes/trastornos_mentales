@@ -1,19 +1,26 @@
 //importar request y response desde express
-const {request, response} = require('express')
+const {request, response} = require('express');
 //importar modelo
 const User = require('../models/User');
+//importar mongoose para validaciones
+const mongoose = require('mongoose');
 
 //listar user
 const getUser = async (req = request, res = response) => {
     try {
-        //se valida si el user no existe
+        // se valida que el id sea un id valido
+        let id = req.params.userId;
+        if(!mongoose.Types.ObjectId.isValid(id)){
+            return res.status(400).send('id de usuario invalido');
+        }
+        //se valida si el user existe
         let user = await User.findById(req.params.userId);
         if(!user){
-            return res.status(400).send('user no existe').json();
+            return res.send('el usuario consultado no existe');
         }
         res.status(200).send(user);
     } catch (error) {
-        res.status(500).send('error');
+        res.status(500).send('error '+ error);
     }
 };
 
@@ -55,6 +62,11 @@ const postUser = async (req = request, res = response) => {
 //editar user
 const putUser = async (req = request, res = response) => {
     try {
+        // validar que el id sea valido
+        let id = req.params.userId;
+        if(!mongoose.Types.ObjectId.isValid(id)){
+            return res.status(400).send('id de usuario invalido');
+        }
         //se valida si el user no existe
         let user = await User.findById(req.params.userId);
         if(!user){

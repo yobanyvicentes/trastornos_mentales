@@ -2,7 +2,7 @@
 const {Router} = require('express');
 const router = Router();
 //importar funciones
-const {getUser, getUsers, postUser, putUser} = require('../controllers/User')
+const {getUser, getUsers, postUser, putUser} = require('../controllers/User');
 
 //listar un usuario
 router.get('/:userId', getUser);

@@ -1,7 +1,6 @@
 const {Schema, model} = require('mongoose')
 
 const PatientSchema = new Schema({
-    //crear los atributos:
     name:{
         type: String,
         required: true,
@@ -29,5 +28,5 @@ const PatientSchema = new Schema({
         required: true,
     },
 });
-//exportar el modelo
+
 module.exports = model('Patient', PatientSchema);
