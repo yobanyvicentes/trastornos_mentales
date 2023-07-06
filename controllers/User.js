@@ -79,17 +79,17 @@ const putUser = async (req = request, res = response) => {
         if(emailExistente){
             return res.status(400).send('el email ya está asignado a otro user distinto al que está intentando actualizar')
         }
-
         //setear los parámetros de la request a
-        user.nombre = req.body.nombre;
+        user.name = req.body.name;
         user.email = req.body.email;
-        user.rol = req.body.rol;
-        user.estado = req.body.estado;
-        user.fechaActualizacion = new Date;
+        user.role = req.body.role;
+        user.password = req.body.password;
+        user.state = req.body.state;
+        user.updateDate = new Date;
         //guardar en bd
         user = await user.save();
 
-        res.send(user);
+        res.status(201).send(user);
     } catch (error) {
         res.status(500).send('error')
     }
