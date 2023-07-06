@@ -16,10 +16,10 @@ const cors = require('cors');
 app.use(express.json());
 app.use(cors());
 // ------- rutas --------
-app.get('/', (req, res) => {
-  res.send('Hello World!')
-})
-// app.use('/<ruta>', require('./routes/<archivo>'));
+// app.get('/', (req, res) => {
+//   res.send('Hello World!')
+// });
+app.use('/user', require('./routes/User'));
 // app.use('/<auth>', require('./router/<auth>'));
 //----------------------------------------------------------
 //levantar la aplicación
