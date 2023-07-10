@@ -18,6 +18,7 @@ app.use(cors());
 // ------- rutas --------
 app.use('/user', require('./routes/User'));
 app.use('/patient', require('./routes/Patient'));
+app.use('/availability', require('./routes/Availability'));
 //-----levantar la aplicación------------
 app.listen(port, () => {
     console.log(`app listening on port ${port}`)

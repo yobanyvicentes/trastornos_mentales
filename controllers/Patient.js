@@ -44,7 +44,6 @@ const postPatient = async ( req = request, res = response) => {
         const patient = new Patient(req.body);
         patient.creationDate = new Date;
         patient.updateDate = new Date;
-        //------------------------------------------------------------------------
         //guardar en bd el paciente
         const patientSaved = await patient.save();
         //retornar respuesta
