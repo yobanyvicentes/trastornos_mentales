@@ -69,10 +69,10 @@ const putAvailability = async (req = request, res = response) => {
         };
         let availability = await Availability.findById(id);
         if(!availability){
-            return res.send('el usuario consultado no existe');
+            return res.send('la disponibilidd consultada no existe');
         };
         let exist = await Availability.findOne({
-            _id: {$ne: availability},
+            _id: {$ne: availability._id},
             user: req.body.user,
             day: req.body.day,
             month: req.body.month,
