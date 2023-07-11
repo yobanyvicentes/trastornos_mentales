@@ -9,7 +9,7 @@ const getAvailabilities = async (req = request, res = response) => {
     try {
         const availabilities = await Availability.find().populate([
             {
-                path: 'user', select: 'name email'
+                path: 'user', select: 'name'
             }
         ]);
         res.status(200).json(availabilities);

@@ -9,10 +9,10 @@ const getAppointments = async (req = request, res = response) => {
     try {
         const appointments = await Appointment.find().populate([
             {
-                path: 'patient', select: 'name email'
+                path: 'patient', select: 'name email state updateDate'
             },
             {
-                path: 'availability', select: 'user day month year time topic'
+                path: 'availability', populate: { path: 'user' }, select: 'name day month year time topic'
             },
         ]);
         res.status(200).json(appointments);
@@ -27,14 +27,7 @@ const getAppointment = async (req = request, res = response) => {
         if(!mongoose.Types.ObjectId.isValid(id)){
             return res.status(400).send('id de disponibilidad invalido');
         };
-        const appointment = await Appointment.findById(id).populate([
-            {
-                path: 'patient', select: 'name email'
-            },
-            {
-                path: 'availability', select: 'user day month year time topic'
-            },
-        ]);
+        const appointment = await Appointment.findById(id);
         if(!appointment){
             return res.send('el usuario consultado no existe');
         };
